@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PacmanGame" default="jar" basedir=".">
+
+    <!-- Set the source directory -->
+    <property name="src.dir" value="src"/>
+
+    <!-- Set the output directory -->
+    <property name="build.dir" value="build"/>
+
+    <!-- Define the JAR file -->
+    <property name="jar.name" value="PacmanGame.jar"/>
+
+    <!-- Define the main class -->
+    <property name="main.class" value="ija.ija2022.homework2.common.main"/>
+
+    <!-- Compile the source files -->
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="${build.dir}/docs"/>
+        <javadoc sourcepath="${src.dir}" destdir="${build.dir}/docs" >
+            <fileset dir="."/>
+            <doctitle>PacmanGame Documentation</doctitle>
+        </javadoc>
+    </target>
+
+    <!-- Create the JAR file -->
+    <target name="jar" depends="compile, javadoc">
+        <jar destfile="${jar.name}" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+</project>
